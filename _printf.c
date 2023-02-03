@@ -20,13 +20,13 @@ void _printf(const char *format, ...)
 
 	va_start(list, format);
 
-	for (i = 0;format && format[i] != '\0')
+	for (i = 0; format && format[i] != '\0')
 	{
 		if (format[i] != '%')
 		{
 			buffer[buff_ind++] = format[i];
-		       if (buff_ind == BUFF_SIZE)
-		       print_buffer(buffer, &buff_ind);
+				if (buff_ind == BUFF_SIZE)
+					print_buffer(buffer, &buff_ind);
 		       /*write(1, %format[i], 1);*/
 		       printed_chars++;
 		}
@@ -38,7 +38,8 @@ void _printf(const char *format, ...)
 			precision = get_precision(format, &i, list);
 			size = get_size(format, &i);
 			++i;
-			printed = handle_print(format, &i, list, buffer, flags, width, precision, size);
+			printed = handle_print(format, &i, list, buffer,
+					 flags, width, precision, size);
 			if (printed == -1)
 				return (-1);
 			printed_chars += printed;

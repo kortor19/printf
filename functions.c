@@ -57,7 +57,6 @@ int print_string(va_list types, char buffer[],
 
 	if (precision >= 0 && precision < length)
 		length = precision;
-	
 	if (width > length)
 	{
 		if (flags & F_MINUS)
@@ -85,7 +84,7 @@ int print_string(va_list types, char buffer[],
  * Return: Number of char printed
  */
 
-int print_percent(va_list typs, char buffer[],
+int print_percent(va_list types, char buffer[],
 		int flags, int width, int precision, int size)
 {
 	UNUSED(types);
@@ -123,7 +122,7 @@ int print_int(va_list types, char buffer[],
 	if (n == 0)
 		buffer[i--] = '0';
 
-	buffer[BUFF_SIZE - 1] ='\0';
+	buffer[BUFF_SIZE - 1] = '\0';
 	num = (unsigned long int)n;
 
 	if (n < 0)

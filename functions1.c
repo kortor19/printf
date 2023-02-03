@@ -13,7 +13,7 @@
  * Return: Number of chars printed
  */
 
-int print_unsigned(va_list types, char[],
+int print_unsigned(va_list types, char buffer[],
 		int flags, int width, int precision, int size)
 {
 	int i = BUFF_SIZE - 2;
@@ -36,7 +36,7 @@ int print_unsigned(va_list types, char[],
 	return (write_unsgnd(0, i, buffer, flags, width, precision, size));
 }
 
-/***************************PRINT UNSIGNED NUMBER IN ON OCTAL******************/
+/************PRINT UNSIGNED NUMBER IN ON OCTAL******************/
 
 /**
  * print_octal - prints an unsigned number in octal notation
@@ -118,8 +118,10 @@ int print_hexa_upper(va_list types, char buffer[],
 /**
  * print_hexa - Prints hexadecimal number in lower or upper
  * @types: List of arguments
+ * @map_to: Array of values to map the number to
  * @buffer: Buffer array to handle print
  * @flags: Calculate active flags
+ * @flag_ch: Calculate active flags
  * @width: get width
  * @precision: [recision specification
  * @size: size specifier
@@ -146,13 +148,11 @@ int print_hexa(va_list types, char map_to[], char buffer[],
 		buffer[i--] = map_to[num % 16];
 		num /= 16;
 	}
-	
 	if (flags & F_HASH && init_num != 0)
 	{
 		buffer[i--] = flag_ch;
 		buffer[i--] = '0';
 	}
 	i++;
-	
 	return (write_unsgned(0, i, buffer, flags, width, precision, size));
 }
